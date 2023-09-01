@@ -1,24 +1,33 @@
 import logo from './logo.svg';
 import './App.css';
+/** @jsxImportSource @emotion/react */
+import { GSCommon } from "./styles/common";
+import { Global, css } from "@emotion/react";
+import { Reset } from 'styled-reset';
+import { Route, Routes, Navigate } from 'react-router-dom';
+import Feed from './pages/Feed/Feed';
+import TimeLine from './pages/TimeLine/TimeLine';
+import Review from './pages/Review/Review';
+import MainTop from './components/MainTop/MainTop';
+import MainCenter from './components/MainCenter/MainCenter';
+import MainBottom from './components/MainBottom/MainBottom';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Reset />
+
+      <Global styles={GSCommon} />
+      <div>
+        <Routes >
+          <Route path="/" element={<Navigate to="/feed" />} />
+
+          <Route  path="/feed" element={<Feed/>} />
+          <Route  path="/timeline" element={<TimeLine />} />
+          <Route  path="/review" element={<Review/>} />
+        </Routes>
+      </div>
+    </>
   );
 }
 
